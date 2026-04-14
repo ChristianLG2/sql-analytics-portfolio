@@ -1,0 +1,78 @@
+/* TOC sidebar background and border */
+#TOC {
+  background-color: #f8f5f0;
+  border: 1px solid #e0d9d0;
+  border-left: 4px solid #d9534f;
+  border-radius: 4px;
+  padding: 16px 14px;
+  font-size: 0.875em;
+  line-height: 1.7;
+}
+
+/* TOC title */
+#TOC::before {
+  content: "Table of contents";
+  display: block;
+  font-weight: 700;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555555;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0d9d0;
+}
+
+/* Hide the default TOC header Quarto generates */
+#TOC > ul > li.toc-title {
+  display: none;
+}
+
+/* TOC links */
+#TOC a {
+  color: #444444;
+  text-decoration: none;
+}
+
+#TOC a:hover {
+  color: #d9534f;
+  text-decoration: none;
+}
+
+/* Active section highlight — red left border like CPI report */
+#TOC a.active,
+#TOC li.active > a {
+  color: #d9534f;
+  font-weight: 600;
+  border-left: 3px solid #d9534f;
+  padding-left: 6px;
+  margin-left: -6px;
+}
+
+/* Indent sub-items */
+#TOC ul ul {
+  padding-left: 12px;
+}
+
+/* Gap between TOC and main content */
+.quarto-layout-panel,
+#quarto-margin-sidebar {
+  padding-right: 2rem;
+}
+
+/* Slightly more breathing room on content side */
+#quarto-document-content {
+  padding-left: 1.5rem;
+}
+
+/* Match journal heading style — keep the serif but add slight spacing */
+h1, h2, h3 {
+  margin-top: 1.8rem;
+}
+
+/* Code blocks — slightly warmer background to match journal palette */
+pre {
+  background-color: #f5f2ee;
+  border: 1px solid #e0d9d0;
+  border-radius: 4px;
+}
