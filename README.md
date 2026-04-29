@@ -3,8 +3,7 @@
 
 A 7-project end-to-end SQL analytics portfolio built on the Northwind database, 
 covering advanced T-SQL patterns, cohort analysis, query optimization, 
-dimensional modeling, dbt transformations, Snowflake migration, and PySpark — 
-each project delivered as a fully documented Quarto analytical report.
+dimensional modeling, dbt transformations, Snowflake migration, and PySpark each project delivered as a fully documented Quarto analytical report.
 
 ---
 
@@ -68,7 +67,7 @@ measures that enable self-serve analytics on top of the dimensional model.
 ### 05 · dbt Models
 **Stack:** dbt · Snowflake · SQL
 
-Implements a full dbt transformation layer on Northwind — staging models that
+Implements a full dbt transformation layer on Northwind, staging models that
 clean raw source data, intermediate models that apply business logic, and mart
 models that deliver analytics-ready datasets. Includes schema.yml documentation,
 dbt tests for data quality, and incremental model patterns.
@@ -78,7 +77,7 @@ dbt tests for data quality, and incremental model patterns.
 ### 06 · Snowflake Migration
 **Stack:** Snowflake SQL · Python
 
-Migrates the Northwind database from SQL Server to Snowflake — recreating the
+Migrates the Northwind database from SQL Server to Snowflake, recreating the
 schema, loading data, and rerunning analytical queries to document performance
 differences between on-premise and cloud data warehouse environments.
 
