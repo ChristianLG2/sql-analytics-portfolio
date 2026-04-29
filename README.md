@@ -27,11 +27,7 @@ each project delivered as a fully documented Quarto analytical report.
 ### 01 · Vendor & Sales Analytics
 **Stack:** T-SQL · Python · pandas · matplotlib · Quarto
 
-Analyzes supplier revenue concentration, category-level rankings, monthly revenue
-trends with month-over-month growth rates and 3-month rolling averages, and
-fulfillment performance across shippers and employees. Uses a 3-CTE architecture,
-window functions including `RANK() OVER (PARTITION BY)`, `LAG()`, and rolling
-averages via `AVG() OVER (ROWS BETWEEN)`.
+Analyzes supplier revenue concentration, category-level rankings, monthly revenue trends with month-over-month growth rates and 3-month rolling averages, and fulfillment performance across shippers and employees. Uses a 3-CTE architecture, window functions including `RANK() OVER (PARTITION BY)`, `LAG()`, and rolling averages via `AVG() OVER (ROWS BETWEEN)`.
 
 ![Month-over-Month Revenue Growth](01_vendor_sales_analytics/outputs/02_MoM_Growth.png)
 
@@ -40,8 +36,7 @@ averages via `AVG() OVER (ROWS BETWEEN)`.
 ### 02 · Cohort Retention Analysis
 **Stack:** T-SQL · Python · pandas · seaborn · Quarto
 
-Segments customers into monthly enrollment cohorts and tracks retention rates over
-time to identify where drop-off occurs and which cohorts show the strongest
+Segments customers into monthly enrollment cohorts and tracks retention rates over time to identify where drop-off occurs and which cohorts show the strongest
 long-term engagement. Delivers a cohort heatmap as the primary analytical artifact.
 
 ![Cohort Retention Heatmap](02_cohort_retention/cohort_heatmap.png)
@@ -62,7 +57,7 @@ performance improvements.
 **Stack:** T-SQL · Power BI · DAX
 
 Migrates the Northwind transactional OLTP structure to an analytical OLAP layer
-using Kimball star schema methodology — designing fact and dimension tables,
+using Kimball star schema methodology, designing fact and dimension tables,
 implementing surrogate keys, and building Power BI semantic models with DAX
 measures that enable self-serve analytics on top of the dimensional model.
 
@@ -93,9 +88,7 @@ differences between on-premise and cloud data warehouse environments.
 **Stack:** PySpark · Databricks · Python
 
 Extends the supply chain analytics work from HackUSU 2026 into a structured
-PySpark portfolio — demonstrating distributed DataFrame operations, transformations,
-and aggregations on Northwind order and product data using the Databricks
-community edition.
+PySpark portfolio demonstrating distributed DataFrame operations, transformations, and aggregations on Northwind order and product data using the Databricks community edition.
 
 ---
 
@@ -111,17 +104,14 @@ Modern stack:  dbt · Snowflake · PySpark · Databricks
 
 ## Design Principles
 
-**Analytical reports not just queries** — every project delivers a Quarto HTML report 
-with executive summary, methodology, visualizations, and key findings.
+**Analytical reports not just queries:** every project delivers a Quarto HTML report with executive summary, methodology, visualizations, and key findings.
 
-**SQL in separate files** — queries live in `/sql/` folders, loaded via Python. 
+**SQL in separate files:** queries live in `/sql/` folders, loaded via Python. 
 SQL is treated as a first-class artifact, not embedded strings.
 
-**CTE-first pattern** — complex logic broken into named steps. Each CTE does one thing. 
-Readable, debuggable, maintainable.
+**CTE-first pattern:** complex logic broken into named steps. Each CTE does one thing. Readable, debuggable, maintainable.
 
-**Business framing** — every chart and query answers a specific business question. 
-Technical choices are explained in terms of the insight they enable.
+**Business framing:** every chart and query answers a specific business question. Technical choices are explained in terms of the insight they enable.
 
 ---
 
