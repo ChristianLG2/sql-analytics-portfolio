@@ -11,8 +11,8 @@ dimensional modeling, dbt transformations, Snowflake migration, and PySpark each
 
 | # | Project | Topics | Stack | Status |
 |---|---|---|---|---|
-| 01 | [Vendor Sales Analytics](./01_vendor_sales_analytics/) | Supplier ranking · Category revenue · Window functions · Quadrant analysis | T-SQL · Python · pandas · matplotlib | ✅ Complete |
-| 02 | [Cohort Retention Analysis](./02_cohort_retention/) | Enrollment cohorts · Completion rates · LAG() · Rolling averages | T-SQL · Python | 🔄 In Progress |
+| 01 | [Vendor Sales Analytics](./01_vendor_sales_analytics/) | Supplier ranking · Category revenue · Window functions · Quadrant analysis | T-SQL · Jupyter Notebooks · Python · pandas · numpy · matplotlib | ✅ Complete |
+| 02 | [Cohort Retention Analysis](./02_cohort_retention/) | Enrollment cohorts · Completion rates · LAG() · Rolling averages | T-SQL · Python · Seaborn | 🔄 In Progress |
 | 03 | [Query Optimization](./03_query_optimization/) | Execution plans · Index analysis · Performance tuning | T-SQL · SSMS | ⬜ Planned |
 | 04 | [Star Schema + Power BI](./04_star_schema_design/) | Kimball methodology · Fact/dimension tables · DAX measures | T-SQL · Power BI | 🔄 In Progress |
 | 05 | [dbt Models](./05_dbt_models/) | Staging → intermediate → mart · schema.yml · dbt tests | dbt · Snowflake | ⬜ Planned |
