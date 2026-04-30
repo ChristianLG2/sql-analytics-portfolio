@@ -227,6 +227,45 @@
 \end{Highlighting}
 \end{Shaded}
 
+\subsection{Cohort Analysis SQL Logic}\label{cohort-analysis-sql-logic}
+
+The SQL query above performs a customer cohort retention analysis with
+the following steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{FirstPurchase CTE} -- Identifies each customer's first
+  purchase date and truncates it to the first day of that month (the
+  cohort month).
+\item
+  \textbf{CustomerActivity CTE} -- Joins the original orders to each
+  customer's cohort, calculating the number of months elapsed between
+  the cohort month and each subsequent order month.
+\item
+  \textbf{CohortSize CTE} -- Counts the total number of unique customers
+  in each cohort month.
+\item
+  \textbf{Final SELECT} -- For each cohort month and each month elapsed
+  (0 to 6 months), it calculates:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{CohortSize} -- Total customers in that cohort
+  \item
+    \texttt{ActiveCustomers} -- Customers who made a purchase in that
+    period
+  \item
+    \texttt{RetentionRate} -- Percentage of customers who remained
+    active (ActiveCustomers / CohortSize × 100)
+  \end{itemize}
+\end{enumerate}
+
+The \texttt{WHERE\ ca.MonthsElapsed\ BETWEEN\ 0\ AND\ 6} limits the
+analysis to the first 6 months after each customer's first purchase,
+which is typically the most telling period for retention patterns.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \OperatorTok{{-}{-}}\NormalTok{ USE Northwind}\OperatorTok{;}
@@ -291,6 +330,35 @@
 9  1996-08-01          14              2                4          28.57
 \end{verbatim}
 
+\subsection{Raw Retention Data
+Interpretation}\label{raw-retention-data-interpretation}
+
+The table above shows the following structure:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{CohortMonth} -- The month of the customer's first purchase
+  (e.g., July 1996, August 1996)
+\item
+  \textbf{CohortSize} -- Number of new customers acquired that month
+\item
+  \textbf{MonthsElapsed} -- How many months after first purchase (0 =
+  first purchase month)
+\item
+  \textbf{ActiveCustomers} -- Number of customers from that cohort who
+  purchased in that period
+\item
+  \textbf{RetentionRate} -- Percentage retention (ActiveCustomers /
+  CohortSize × 100)
+\end{itemize}
+
+\textbf{Key observations from the raw data:} - July 1996 cohort had 20
+new customers. Retention dropped sharply from 100\% (Month 0) to 20\%
+(Month 1), then gradually recovered to 35\% by Month 6. - August 1996
+cohort had 14 new customers with a stronger initial retention of 42.86\%
+at Month 1, though it declined to 28.57\% by Month 2.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
@@ -330,6 +398,70 @@
 \end{Shaded}
 
 \pandocbounded{\includegraphics[keepaspectratio]{CohortAnalysis_files/figure-pdf/cell-6-output-1.png}}
+
+\subsection{Cohort Retention Heatmap
+Analysis}\label{cohort-retention-heatmap-analysis}
+
+The heatmap above visualizes customer retention rates across different
+cohorts over time.
+
+\subsubsection{How to Read This Chart:}\label{how-to-read-this-chart}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Rows} represent customer cohorts (the month they made their
+  first purchase)
+\item
+  \textbf{Columns} represent months since the first purchase (0 to 6)
+\item
+  \textbf{Color intensity} (darker = higher retention percentage)
+\item
+  \textbf{Numbers} show the exact retention rate for each cohort at each
+  interval
+\end{itemize}
+
+\subsubsection{Key Business Insights:}\label{key-business-insights}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Initial Drop-off is Severe} -- All cohorts show a dramatic
+  decline from Month 0 (100\%) to Month 1 (20--43\%). This indicates
+  that while initial acquisition is successful, the first post-purchase
+  month is critical for customer churn.
+\item
+  \textbf{July 1996 Cohort Performance} -- This cohort (20 customers)
+  started strong but dropped to 20\% by Month 1. However, retention
+  improved to 30\% by Month 5 and 35\% by Month 6, suggesting that
+  re-engagement efforts or seasonal factors may have brought customers
+  back.
+\item
+  \textbf{August 1996 Cohort} -- Though smaller (14 customers), this
+  cohort showed better initial retention (42.86\%) at Month 1,
+  indicating potentially higher-quality acquisitions or a more engaging
+  onboarding experience.
+\item
+  \textbf{Long-term Retention Trends} -- Cohorts tend to stabilize
+  between 20--35\% after Month 2, suggesting that customers who remain
+  beyond the second month are more likely to become loyal, repeat
+  purchasers.
+\end{enumerate}
+
+\subsubsection{Recommended Actions:}\label{recommended-actions}
+
+\begin{itemize}
+\tightlist
+\item
+  Investigate what changed between July and August 1996 that improved
+  Month 1 retention.
+\item
+  Implement targeted win-back campaigns for customers who haven't
+  purchased since their first month.
+\item
+  Analyze the behavior of customers who remain active at Month 6
+  vs.~those who churn early to identify key retention drivers.
+\end{itemize}
 
 
 
