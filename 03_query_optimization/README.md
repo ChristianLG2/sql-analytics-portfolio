@@ -44,7 +44,7 @@ Categories               2       efficient
 ─────────────────────────────────────────────
 Total                4,329       76ms elapsed
 ```
-![Supplier-Revenue-Ranking-Query](03_query_optimization/outputs/stats/01_Before_Supplier_Ranking_stats.png)
+![Supplier-Revenue-Ranking-Query](outputs/stats/01_Before_Supplier_Ranking_stats.png)
 
 ### Execution Plan Operators
 
@@ -63,7 +63,7 @@ Total                4,329       76ms elapsed
         ↓
 Result (49 rows)
 ```
-![Supplier-Revenue-Ranking-EP](03_query_optimization/outputs/queryplans/01_Supplier_Ranking_QPlan.png)
+![Supplier-Revenue-Ranking-EP](outputs/queryplans/01_Supplier_Ranking_QPlan.png)
 
 **Root cause:** SQL Server performs a Clustered Index Scan on Products as the outer side of a Nested Loop join with Order Details — reading Products once per Order Detail row lookup, producing 4,310 logical reads.
 
