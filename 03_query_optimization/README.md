@@ -1,17 +1,14 @@
-# Project 03 — Query Optimization
+# Project 03 Query Optimization
 ### T-SQL · Execution Plans · Index Analysis · SQL Server 2022
 
-Query performance analysis on two analytical queries from the Northwind database.
-Each case documents baseline execution statistics, execution plan operators,
-optimization attempts, and findings — including cases where the query optimizer
-made better decisions than manual intervention.
+Query performance analysis on two analytical queries from the Northwind database. Each case documents baseline execution statistics, execution plan operators, optimization attempts, and findings; including cases where the query optimizer made better decisions than manual intervention.
 
 ---
 
 ## Business Questions
 
 > 1. Can the supplier revenue ranking query be made more efficient through indexing?
-> 2. Why is the monthly sales trends query already optimal — and what keeps it that way?
+> 2. Why is the monthly sales trends query already optimal, and what keeps it that way?
 
 ---
 
@@ -27,7 +24,7 @@ Diagnostics: SET STATISTICS IO ON / SET STATISTICS TIME ON
 
 ---
 
-## Case 1 — Supplier Revenue Ranking
+## Case 1 Supplier Revenue Ranking
 
 ### Query Profile
 
@@ -47,6 +44,7 @@ Categories               2       efficient
 ─────────────────────────────────────────────
 Total                4,329       76ms elapsed
 ```
+![Supplier-Revenue-Ranking-Query](03_query_optimization\outputs\stats\01_Before_Supplier_Ranking_stats.png)
 
 ### Execution Plan Operators
 
@@ -65,10 +63,9 @@ Total                4,329       76ms elapsed
         ↓
 Result (49 rows)
 ```
+![Supplier-Revenue-Ranking-EP](03_query_optimization\outputs\queryplans\01_Supplier_Ranking_QPlan.png)
 
-**Root cause:** SQL Server performs a Clustered Index Scan on Products as the
-outer side of a Nested Loop join with Order Details — reading Products once per
-Order Detail row lookup, producing 4,310 logical reads.
+**Root cause:** SQL Server performs a Clustered Index Scan on Products as the outer side of a Nested Loop join with Order Details — reading Products once per Order Detail row lookup, producing 4,310 logical reads.
 
 ### Optimization Attempt — Covering Index
 
@@ -78,8 +75,7 @@ ON Products (SupplierID)
 INCLUDE (ProductID, CategoryID);
 ```
 
-**Hypothesis:** Including `ProductID` and `CategoryID` in the index eliminates
-key lookups back to the clustered index, reducing Products reads significantly.
+**Hypothesis:** Including `ProductID` and `CategoryID` in the index eliminates key lookups back to the clustered index, reducing Products reads significantly.
 
 ### Results After Forced Index Hint
 
@@ -118,9 +114,7 @@ Elapsed             76ms           80ms            +4ms  ❌ slower
 ### Key Lesson
 
 ```
-Fixing one bottleneck in isolation can shift cost rather than reduce it.
-The optimizer sees total query cost. Manual index hints see one table.
-Always measure total reads — not just the table being targeted.
+Fixing one bottleneck in isolation can shift cost rather than reduce it. The optimizer sees total query cost. Manual index hints see one table. Always measure total reads, not just the table being targeted.
 ```
 
 ---
@@ -150,24 +144,24 @@ Total                   39       50ms elapsed
 ### Execution Plan Operators
 
 ```
-[Clustered Index Scan] — Orders (830 rows, ordered forward)
+[Clustered Index Scan] Orders (830 rows, ordered forward)
         ↓
-[Compute Scalar] — DATEFROMPARTS() month bucketing
+[Compute Scalar] DATEFROMPARTS() month bucketing
         ↓
-[Clustered Index Scan] — Order Details (2,155 rows, ordered forward)
+[Clustered Index Scan] Order Details (2,155 rows, ordered forward)
         ↓
-[Compute Scalar] — revenue calculation (UnitPrice × Quantity × (1-Discount))
+[Compute Scalar] revenue calculation (UnitPrice × Quantity × (1-Discount))
         ↓
-[Merge Join] — Orders ⋈ Order Details on OrderID
+[Merge Join] Orders ⋈ Order Details on OrderID
         ↓
 [Sort] — ORDER BY SaleMonth
         ↓
-[Stream Aggregate] — GROUP BY month → SUM(revenue)
+[Stream Aggregate] GROUP BY month → SUM(revenue)
         ↓
-[Window Spool × 2] — rolling average (ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)
+[Window Spool × 2] rolling average (ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)
                       LAG() computation
         ↓
-[Compute Scalar × 4] — ROUND(), MoM growth formula, NULLIF division guard
+[Compute Scalar × 4] ROUND(), MoM growth formula, NULLIF division guard
         ↓
 Result (23 rows)
 ```
@@ -176,23 +170,17 @@ Result (23 rows)
 
 **Merge Join instead of Hash Match or Nested Loop:**
 
-SQL Server chose a Merge Join on `OrderID` — the most efficient join type
-when both inputs are pre-sorted on the join key. Orders and Order Details
-are both clustered on `OrderID`, so no additional sort is required for the join.
+SQL Server chose a Merge Join on `OrderID` — the most efficient join typewhen both inputs are pre-sorted on the join key. Orders and Order Detailsare both clustered on `OrderID`, so no additional sort is required for the join.
 Total join cost: near zero.
 
 **Ordered Forward scans:**
 
-Both Clustered Index Scans are `ORDERED FORWARD` — SQL Server reads each table
-once in primary key order, feeds the Merge Join directly, and avoids any random
-I/O. This is why Orders costs only 24 reads and Order Details only 15.
+Both Clustered Index Scans are `ORDERED FORWARD` — SQL Server reads each tableonce in primary key order, feeds the Merge Join directly, and avoids any random I/O. This is why Orders costs only 24 reads and Order Details only 15.
 
 **Window Spool in memory:**
 
 The `ROWS BETWEEN 2 PRECEDING AND CURRENT ROW` rolling average and `LAG()`
-computation both use Window Spool operators with zero worktable disk spills —
-the entire window frame fits in memory. On larger datasets this would spill
-to `tempdb`, significantly increasing I/O.
+computation both use Window Spool operators with zero worktable disk spills the entire window frame fits in memory. On larger datasets this would spill to `tempdb`, significantly increasing I/O.
 
 **Existing OrderDate index:**
 
@@ -201,9 +189,9 @@ OrderDate    NONCLUSTERED    OrderDate
 ```
 
 The `WHERE o.OrderDate IS NOT NULL` filter uses this index to eliminate null
-rows before the scan — keeping the Orders read count at 24 rather than 830.
+rows before the scan keeping the Orders read count at 24 rather than 830.
 
-### Index Analysis — Orders
+### Index Analysis Orders
 
 ```
 Index               Type            Column          Role
@@ -216,8 +204,7 @@ ShippedDate         NONCLUSTERED    ShippedDate     Not used
 ShipPostalCode      NONCLUSTERED    ShipPostalCode  Not used
 ```
 
-The existing index coverage on Orders is comprehensive. No additional indexes
-are needed for this query pattern.
+The existing index coverage on Orders is comprehensive. No additional indexes are needed for this query pattern.
 
 ### Finding
 
@@ -256,9 +243,9 @@ At Northwind scale — unnecessary. Documenting for production awareness.
 | Total logical reads | 4,329 | 39 |
 | Elapsed time | 76ms | 50ms |
 | Primary join type | Hash Match + Nested Loop | Merge Join |
-| Bottleneck | Products — 4,310 reads | None |
+| Bottleneck | Products 4,310 reads | None |
 | Index added | IX_Products_SupplierID_Covering | None needed |
-| Optimization result | Optimizer ignored index — correct | Already optimal |
+| Optimization result | Optimizer ignored index correct | Already optimal |
 | Key lesson | Index hints shift cost, not always reduce it | Pre-sorted clustered indexes enable zero-cost joins |
 
 ---
