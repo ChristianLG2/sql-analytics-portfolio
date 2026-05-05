@@ -1,0 +1,102 @@
+/* hub.css — minimal project index */
+ 
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+ 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+body {
+  background: #0D1117;
+  color: #E6EDF3;
+  font-family: 'DM Mono', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  -webkit-font-smoothing: antialiased;
+}
+ 
+.container {
+  width: 100%;
+  max-width: 620px;
+}
+ 
+.hub-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #484F58;
+  margin-bottom: 1.5rem;
+}
+ 
+.hub-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+ 
+.hub-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #E6EDF3;
+  text-decoration: none;
+  font-size: 13px;
+  background: #161B22;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+ 
+.hub-list a:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #1A2030;
+}
+ 
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+ 
+.num {
+  font-size: 11px;
+  color: #484F58;
+  min-width: 18px;
+}
+ 
+.title {
+  color: #E6EDF3;
+}
+ 
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ 
+.tag {
+  font-size: 10px;
+  color: #8B949E;
+  padding: 2px 7px;
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+ 
+.arrow {
+  font-size: 12px;
+  color: #484F58;
+}
+ 
+.hub-footer {
+  margin-top: 1.5rem;
+  font-size: 11px;
+  color: #484F58;
+}
+ 
+@media (max-width: 480px) {
+  .tag { display: none; }
+}
+ 
