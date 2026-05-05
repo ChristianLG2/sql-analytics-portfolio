@@ -3101,6 +3101,26 @@ vertical-align: -.125em;
   <li><a href="#query-design" id="toc-query-design" class="nav-link" data-scroll-target="#query-design"><span class="header-section-number">3.5</span> Query Design</a></li>
   <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations"><span class="header-section-number">3.6</span> Visualizations</a></li>
   </ul></li>
+  <li><a href="#section-2-sales-trends-analysis" id="toc-section-2-sales-trends-analysis" class="nav-link" data-scroll-target="#section-2-sales-trends-analysis"><span class="header-section-number">4</span> Section 2: Sales Trends Analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-model-1" id="toc-data-model-1" class="nav-link" data-scroll-target="#data-model-1"><span class="header-section-number">4.1</span> Data Model</a></li>
+  <li><a href="#query-design-window-functions" id="toc-query-design-window-functions" class="nav-link" data-scroll-target="#query-design-window-functions"><span class="header-section-number">4.2</span> Query Design Window Functions</a></li>
+  </ul></li>
+  <li><a href="#section-3-fulfillment-shipper-analysis" id="toc-section-3-fulfillment-shipper-analysis" class="nav-link" data-scroll-target="#section-3-fulfillment-shipper-analysis"><span class="header-section-number">5</span> Section 3: Fulfillment &amp; Shipper Analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-model-2" id="toc-data-model-2" class="nav-link" data-scroll-target="#data-model-2"><span class="header-section-number">5.1</span> Data Model</a></li>
+  <li><a href="#query-design-1" id="toc-query-design-1" class="nav-link" data-scroll-target="#query-design-1"><span class="header-section-number">5.2</span> Query Design</a></li>
+  <li><a href="#visualizations-findings" id="toc-visualizations-findings" class="nav-link" data-scroll-target="#visualizations-findings"><span class="header-section-number">5.3</span> Visualizations &amp; Findings</a></li>
+  </ul></li>
+  <li><a href="#conclusions-recommendations" id="toc-conclusions-recommendations" class="nav-link" data-scroll-target="#conclusions-recommendations"><span class="header-section-number">6</span> Conclusions &amp; Recommendations</a>
+  <ul class="collapse">
+  <li><a href="#supplier-revenue" id="toc-supplier-revenue" class="nav-link" data-scroll-target="#supplier-revenue"><span class="header-section-number">6.1</span> Supplier Revenue</a></li>
+  </ul></li>
+  <li><a href="#appendix-technical-notes" id="toc-appendix-technical-notes" class="nav-link" data-scroll-target="#appendix-technical-notes"><span class="header-section-number">7</span> Appendix — Technical Notes</a>
+  <ul class="collapse">
+  <li><a href="#stack-environment" id="toc-stack-environment" class="nav-link" data-scroll-target="#stack-environment"><span class="header-section-number">7.1</span> Stack &amp; Environment</a></li>
+  <li><a href="#chart-index" id="toc-chart-index" class="nav-link" data-scroll-target="#chart-index"><span class="header-section-number">7.2</span> Chart Index</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -3137,7 +3157,7 @@ vertical-align: -.125em;
 <strong>Source:</strong> Northwind Database (SQL Server 2022)</p>
 <section id="executive-summary" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="executive-summary"><span class="header-section-number">1</span> Executive Summary</h2>
-<p>This analysis answers six business questions across three operational domains using Northwind transaction and fulfillment data:</p>
+<p>This analysis addresses six business questions across three operational domains using Northwind transaction and fulfillment data. The goal is to equip procurement, finance, and logistics teams with evidence-based insights to prioritize supplier relationships, monitor revenue momentum, and evaluate carrier reliability.</p>
 <ol type="1">
 <li><strong>Which suppliers drive the most revenue?</strong></li>
 <li><strong>How does each supplier rank within their product category?</strong></li>
@@ -3261,10 +3281,10 @@ vertical-align: -.125em;
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="3ae460f8" class="cell" data-execution_count="6">
+<div id="3ae460f8" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish Database Connection</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish All Database Connections</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> pyodbc.<span class="ex">connect</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;DRIVER={ODBC Driver 17 for SQL Server};&quot;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SERVER=localhost;&quot;</span></span>
@@ -3324,9 +3344,7 @@ vertical-align: -.125em;
 </section>
 <section id="visualizations" class="level3" data-number="3.6">
 <h3 data-number="3.6" class="anchored" data-anchor-id="visualizations"><span class="header-section-number">3.6</span> Visualizations</h3>
-<section id="top-15-suppliers-by-revenue" class="level4" data-number="3.6.1">
-<h4 data-number="3.6.1" class="anchored" data-anchor-id="top-15-suppliers-by-revenue"><span class="header-section-number">3.6.1</span> Top 15 Suppliers by Revenue</h4>
-<p>The chart below ranks the top 15 suppliers by total net revenue. Bars are colored by product category — revealing which categories dominate the top revenue positions and where supplier concentration is highest.</p>
+<p>The chart below ranks the top 15 suppliers by total net revenue. Bars are colored by product category, revealing which categories dominate the top revenue positions and where supplier concentration is highest.</p>
 <div id="9617b9cd" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3395,6 +3413,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
+<p>Aux joyeux ecclésiastiques leads all suppliers by a significant margin with $153,691 in total net revenue, nearly 30% ahead of the second-ranked Gai pâturage at $117,981 both representing Beverages and Dairy Products respectively. A notable drop-off follows at position three, where Plutzer Lebensmittelgroßmärkte AG (Meat/Poultry) generates $80,369, roughly half the top supplier’s revenue. The remaining twelve suppliers cluster tightly between $26,591 and $50,255, suggesting the revenue tail is relatively flat after the top three. Category-wise, Beverages and Dairy Products dominate the upper ranks, while Confections (purple) appears three times in the mid-tier, and Seafood and Condiments hold the bottom two positions with New England Seafood Cannery at $26,591 and New Orleans Cajun Delights at $31,168.</p>
 <div id="1efea8de" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3450,6 +3469,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
+<p>Beverages is the undisputed top-performing category with $267,868 in total revenue, followed closely by Dairy Products at $234,507 — together these two categories account for over 38% of all revenue across the eight segments. Confections ($167,357) and Meat/Poultry ($163,022) form a tight second tier, separated by less than $5,000. Seafood ($131,262) and Condiments ($106,047) occupy the middle ground, while Produce ($99,985) and Grains/Cereals ($95,745) sit at the bottom, both falling just below the $100,000 mark. The spread between the highest and lowest categories is nearly 2.8×, indicating meaningful structural concentration at the category level.</p>
 <div id="8e60b2f3" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3523,6 +3543,82 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
+<p>A scatter plot positioning every supplier at the intersection of their overall revenue rank (x-axis) and their within-category rank (y-axis). Median lines divide the chart into four quadrants. The top-5 overall suppliers are individually annotated.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quadrant</th>
+<th>Label</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low overall rank, low category rank</td>
+<td>★ Overall &amp; Category Leaders</td>
+<td>Dominant performers across both dimensions — highest strategic value</td>
+</tr>
+<tr class="even">
+<td>High overall rank, low category rank</td>
+<td>◆ Niche Category Specialists</td>
+<td>Lead their category but have lower total volume — valuable within segment</td>
+</tr>
+<tr class="odd">
+<td>Low overall rank, high category rank</td>
+<td>▲ Overall Leaders, Mid Category</td>
+<td>High total revenue but face strong competition within their category</td>
+</tr>
+<tr class="even">
+<td>High overall rank, high category rank</td>
+<td>▼ Underperformers</td>
+<td>Lag on both dimensions — candidates for review</td>
+</tr>
+</tbody>
+</table>
+<p>The quadrant plot reveals a clear cluster of top performers in the bottom-left corner, where Aux joyeux ecclésiastiques, Gai pâturage, Plutzer, and Pasta Buttini all hold both low overall ranks (1–5) and category rank 1 — confirming them as true Overall &amp; Category Leaders. Formaggi Fortini sits just outside this elite group at overall rank ~8 and category rank 2, representing a strong Dairy Products contender. The upper-left region (Overall Leaders, Mid Category) is sparsely populated, meaning few suppliers achieve high global revenue while ranking only mid-tier within their category. The right half of the chart is densely populated with Underperformers and Niche Specialists, with several Condiments and Seafood suppliers clustering between overall ranks 30–50 and category ranks 5–8 — high on both axes and therefore the lowest strategic priority. One notable Niche Specialist appears around overall rank 38–40 with category rank 1, indicating a supplier who dominates their product segment despite a modest global revenue position.</p>
+</section>
+</section>
+<section id="section-2-sales-trends-analysis" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="section-2-sales-trends-analysis"><span class="header-section-number">4</span> Section 2: Sales Trends Analysis</h2>
+<p>This section examines how revenue has evolved over the 23-month dataset (July 1996 – April 1998), identifies seasonal patterns, and measures the velocity and consistency of growth using month-over-month rates and a 3-month rolling average.</p>
+<section id="data-model-1" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="data-model-1"><span class="header-section-number">4.1</span> Data Model</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Table</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Orders</code></td>
+<td>OrderDate anchors each transaction to a calendar month</td>
+</tr>
+<tr class="even">
+<td><code>Order Details</code></td>
+<td>UnitPrice, Quantity, Discount source of net revenue</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="query-design-window-functions" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="query-design-window-functions"><span class="header-section-number">4.2</span> Query Design Window Functions</h3>
+<p>A single CTE (<code>MonthlySales</code>) aggregates net revenue per calendar month. Three window functions are then applied in the outer SELECT:</p>
+<ul>
+<li><code>LAG(MonthlyRevenue, 1)</code> retrieves the prior month’s revenue for comparison</li>
+<li><strong>Month-over-Month Growth %</strong> computed as <code>(current − prior) / prior × 100</code>, with <code>NULLIF</code> guarding against division by zero</li>
+<li><code>AVG() OVER (ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)</code> produces the 3-month rolling average, smoothing short-term volatility</li>
+</ul>
 <div id="54bf567d" class="cell" data-vscode="{&quot;languageId&quot;:&quot;sql&quot;}">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3653,7 +3749,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>Monthly revenue grew consistently from $27861 in July-96 to $123,799 in April-98 a ~4.44x increase over 23 months. The median monthly revenue of $47,288 was first exceeded in Jan-97 of 24 months, with the second half of the dataset showing notably stronger and more sustained performance above the median line.</p>
+<p>Revenue opened at $27,861 in July 1996 and followed a broadly upward trajectory over the 23-month period, reaching its all-time peak of $123,799 in April 1998 — a 4.44× increase from the starting point. The path was not linear: an early spike to $61,000 in January 1997 was immediately reversed to roughly $39,000 in February, and a mid-series trough of ~$36,000 in June 1997 briefly pulled the line back below the median. The $47,288 median was first crossed in January 1997 and then again consistently from December 1997 onward, with the final five months of the dataset all sitting well above it. The sharp collapse to the series low of $18,334 in May 1998 stands out as a clear anomaly — falling 85% from the April peak in a single month — and is most likely a data cutoff or partial-month recording artifact rather than a genuine business event.</p>
 <div id="0deebb55" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3756,7 +3852,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>The 3-month rolling average reveals the underlying revenue trend beneath month-to-month volatility. The most significant divergence occurred in September-94 when monthly revenue exceeded the rolling average with historic highs signaling an unusually strong period relative to recent trend.</p>
+<p>The 3-month rolling average (median $48,327) tracks the same general upward arc as raw monthly revenue but absorbs the most volatile swings, making the underlying growth trend easier to read. The most telling divergence appears in the January 1997 spike: while monthly revenue jumped to ~$61,000, the rolling average climbed only to ~$51,000, confirming that the spike was a short-term aberration rather than a sustained shift. Conversely, from December 1997 through April 1998 the rolling average rose steadily from ~$56,000 to ~$110,000, closely shadowing the raw line and signaling that the late-period acceleration was genuine and sustained across multiple months. After the May 1998 collapse to $18,334, the rolling average lands around $82,000 — still well above the median — because it is anchored by the two strong preceding months, underscoring why the trailing average is a more reliable planning baseline than any single monthly figure.</p>
 <div id="a8091ffd" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3825,7 +3921,90 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>Of the 23 months analyzed, 15 showed positive growth and 8 showed contraction. The strongest single-month acceleration was Dec-97 at +64%, while the sharpest contraction occurred in May-98 at -85%.</p>
+<p>Across the 23 periods measured, growth months (15) outnumber contraction months (8) by nearly 2-to-1, confirming the positive directional bias seen in the trend charts. The most explosive single-month acceleration was December 1997 at +64.0%, followed by three other strong surges: October 1996 (+42.2%), January 1997 (+35.4%), and April 1997 (+37.6%). Contractions were concentrated in four episodes — August 1996 (−8.5%), February 1997 (−37.2%), June 1997 (−32.4%), and November 1997 (−34.8%) — all recovering within one to two months, suggesting cyclical demand patterns rather than structural decline. The outlier is May 1998 at −85.2%, which dwarfs every other contraction by a factor of more than two and reinforces the interpretation that this figure reflects an incomplete data period rather than an actual revenue collapse.</p>
+</section>
+</section>
+<section id="section-3-fulfillment-shipper-analysis" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="section-3-fulfillment-shipper-analysis"><span class="header-section-number">5</span> Section 3: Fulfillment &amp; Shipper Analysis</h2>
+<p>Timely fulfillment is a key driver of customer satisfaction in wholesale distribution. This section evaluates the three active shippers — Federal Shipping, Speedy Express, and United Package — across on-time rate, average ship time, freight spend, and severity of delays.</p>
+<section id="data-model-2" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="data-model-2"><span class="header-section-number">5.1</span> Data Model</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Table</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Shippers</code></td>
+<td>ShipperID, CompanyName — carrier identity</td>
+</tr>
+<tr class="even">
+<td><code>Orders</code></td>
+<td>OrderDate, ShippedDate, RequiredDate, Freight, ShipVia — fulfillment timing and cost</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="query-design-1" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="query-design-1"><span class="header-section-number">5.2</span> Query Design</h3>
+<p>A single CTE (<code>ShipperDetails</code>) joins Shippers to Orders and computes all metrics in a single pass using conditional aggregation:</p>
+<ul>
+<li><code>AvgDaysToShip</code> — average of <code>DATEDIFF(DAY, OrderDate, ShippedDate)</code> per shipper</li>
+<li><code>OnTimeOrders / OnTimePct</code> — count and share of orders where <code>ShippedDate ≤ RequiredDate</code></li>
+<li><code>LatePct</code> — share of orders where <code>ShippedDate &gt; RequiredDate</code></li>
+<li><code>AvgFreightExp</code> and <code>TotalSpentPerShipper</code> — freight cost analysis ### Shipper Performance Summary</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Shipper</th>
+<th>Avg Days to Ship</th>
+<th>On-Time Performance</th>
+<th>Late Orders</th>
+<th>Total Freight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Speedy Express</td>
+<td>7.5 days</td>
+<td>Fastest</td>
+<td>15</td>
+<td>Lowest</td>
+</tr>
+<tr class="even">
+<td>Federal Shipping</td>
+<td>8.6 days</td>
+<td>Best overall consistency</td>
+<td>15</td>
+<td>Mid</td>
+</tr>
+<tr class="odd">
+<td>United Package</td>
+<td>9.2 days</td>
+<td>Lowest on-time rate</td>
+<td>27</td>
+<td>Highest</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="visualizations-findings" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="visualizations-findings"><span class="header-section-number">5.3</span> Visualizations &amp; Findings</h3>
 <div id="141e838f" class="cell" data-vscode="{&quot;languageId&quot;:&quot;sql&quot;}">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3904,6 +4083,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
+<p>United Package carries the highest total order volume at 326 orders (299 on-time, 27 late), making it the dominant carrier by throughput. Federal Shipping handled 255 orders with only 15 late — an on-time rate of approximately 94% — the strongest reliability performance of the three. Speedy Express processed 249 orders with 16 late, yielding a very similar on-time rate of ~93.6%, essentially tied with Federal Shipping on reliability despite handling slightly fewer orders. The gap in late order counts between Federal Shipping/Speedy Express (15–16) and United Package (27) is notable: United Package generates nearly twice the late deliveries of either peer, suggesting that its higher volume may be straining fulfillment capacity and depressing on-time performance.</p>
 <div id="d0b84a0e" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3958,6 +4138,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
+<p>Freight spend scales closely with order volume across all three carriers. United Package, as the highest-volume shipper, also incurs the largest freight cost at $28,245 — 74% more than Speedy Express ($16,185) and 38% more than Federal Shipping ($20,513). Federal Shipping sits in the middle both in volume and cost, while Speedy Express is the most economical option despite its near-identical on-time rate to Federal Shipping. From a cost-efficiency perspective, Speedy Express delivers comparable reliability at the lowest freight cost, whereas United Package’s combination of the highest spend and the most late orders makes it the least favorable carrier on a cost-per-reliable-delivery basis.</p>
 <div id="c0ce9d96" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
@@ -4069,6 +4250,124 @@ vertical-align: -.125em;
 </div>
 <p>While Chart “On Time VS Late Orders by Shippers” identified United Package as having the lowest on-time rate with 27 late orders, the most of any shipper Chart “Average Days Late When Orders Miss Deadline” reveals a more nuanced picture of delay severity. Speedy Express, despite fewer late orders (15), averages 8.1 days past the required date when delays do occur 45% more severe than United Package and Federal Shipping, both averaging 5.6 days late. Federal Shipping performs most consistently across all three metrics: fewest late orders (15), tied for lowest average delay (5.6 days), and the best on-time rate from Chart 8. The data suggests two distinct failure modes, United Package fails frequently but recovers quickly, while Speedy Express fails rarely but severely. For time-critical shipments, Federal Shipping is the lowest-risk carrier across all fulfillment dimensions.</p>
 </section>
+</section>
+<section id="conclusions-recommendations" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusions-recommendations"><span class="header-section-number">6</span> Conclusions &amp; Recommendations</h2>
+<section id="supplier-revenue" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="supplier-revenue"><span class="header-section-number">6.1</span> Supplier Revenue</h3>
+<ul>
+<li><p>Concentrate contract renewal efforts on the top 5–6 suppliers, which collectively account for the majority of net revenue.</p></li>
+<li><p>Use the Overall vs. Category Rank quadrant to identify Niche Specialists — suppliers who lead their segment and may warrant priority even if their global rank appears modest.</p></li>
+<li><p>Monitor concentration risk: heavy reliance on a small number of Beverages and Dairy Products suppliers creates vulnerability if any one relationship is disrupted. ### Sales Trends</p></li>
+<li><p>The 4.44× revenue growth over 23 months indicates strong underlying demand; however, the −85% MoM contraction in May 1998 warrants investigation to determine whether it reflects a genuine seasonal dip or a data collection artifact.</p></li>
+<li><p>The 3-month rolling average is a more reliable planning baseline than raw monthly revenue given visible month-to-month volatility.</p></li>
+<li><p>December consistently shows strong acceleration; incorporate Q4 seasonality into annual forecasting models. ### Fulfillment &amp; Carriers</p></li>
+<li><p>Federal Shipping is the lowest-risk carrier across all fulfillment dimensions: fewest late orders (tied), lowest average delay (5.6 days), and competitive ship speed.</p></li>
+<li><p>For time-critical shipments, avoid Speedy Express despite its speed advantage — when it misses deadlines, delays are 45% more severe than its peers.</p></li>
+<li><p>Investigate United Package’s capacity constraints: its high volume combined with the most late deliveries suggests it may be approaching fulfillment limits.</p></li>
+<li><p>Consider renegotiating freight contracts with United Package, which carries both the highest order volume and the highest total freight spend.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="appendix-technical-notes" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="appendix-technical-notes"><span class="header-section-number">7</span> Appendix — Technical Notes</h2>
+<section id="stack-environment" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="stack-environment"><span class="header-section-number">7.1</span> Stack &amp; Environment</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Database</td>
+<td>Northwind (SQL Server 2022)</td>
+</tr>
+<tr class="even">
+<td>Query Language</td>
+<td>T-SQL with CTEs and window functions</td>
+</tr>
+<tr class="odd">
+<td>Analysis</td>
+<td>Python 3 · pandas · numpy</td>
+</tr>
+<tr class="even">
+<td>Visualization</td>
+<td>matplotlib · matplotlib.ticker · matplotlib.dates</td>
+</tr>
+<tr class="odd">
+<td>Connectivity</td>
+<td>pyodbc (ODBC Driver 17 for SQL Server)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="chart-index" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="chart-index"><span class="header-section-number">7.2</span> Chart Index</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Chart Title</th>
+<th>Section</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Top 15 Suppliers by Revenue</td>
+<td>Section 1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Total Revenue by Product Category</td>
+<td>Section 1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Overall vs. Category Rank Quadrant</td>
+<td>Section 1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Monthly Revenue Trend</td>
+<td>Section 2</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>3-Month Rolling Average vs. Monthly Revenue</td>
+<td>Section 2</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Month-over-Month Revenue Growth</td>
+<td>Section 2</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>On-Time vs. Late Orders by Shipper</td>
+<td>Section 3</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Total Freight Spend by Shipper</td>
+<td>Section 3</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Average Days to Ship by Shipper</td>
+<td>Section 3</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Average Days Late When Orders Miss Deadline</td>
+<td>Section 3</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 
