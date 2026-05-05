@@ -3112,14 +3112,22 @@ vertical-align: -.125em;
   <li><a href="#query-design-1" id="toc-query-design-1" class="nav-link" data-scroll-target="#query-design-1"><span class="header-section-number">5.2</span> Query Design</a></li>
   <li><a href="#visualizations-findings" id="toc-visualizations-findings" class="nav-link" data-scroll-target="#visualizations-findings"><span class="header-section-number">5.3</span> Visualizations &amp; Findings</a></li>
   </ul></li>
-  <li><a href="#conclusions-recommendations" id="toc-conclusions-recommendations" class="nav-link" data-scroll-target="#conclusions-recommendations"><span class="header-section-number">6</span> Conclusions &amp; Recommendations</a>
+  <li><a href="#section-4-late-order-severity-analysis" id="toc-section-4-late-order-severity-analysis" class="nav-link" data-scroll-target="#section-4-late-order-severity-analysis"><span class="header-section-number">6</span> Section 4: Late Order Severity Analysis</a>
   <ul class="collapse">
-  <li><a href="#supplier-revenue" id="toc-supplier-revenue" class="nav-link" data-scroll-target="#supplier-revenue"><span class="header-section-number">6.1</span> Supplier Revenue</a></li>
+  <li><a href="#data-model-3" id="toc-data-model-3" class="nav-link" data-scroll-target="#data-model-3"><span class="header-section-number">6.1</span> Data Model</a></li>
+  <li><a href="#query-design-late-orders-isolation" id="toc-query-design-late-orders-isolation" class="nav-link" data-scroll-target="#query-design-late-orders-isolation"><span class="header-section-number">6.2</span> Query Design — Late Orders Isolation</a></li>
+  <li><a href="#visualizations-findings-1" id="toc-visualizations-findings-1" class="nav-link" data-scroll-target="#visualizations-findings-1"><span class="header-section-number">6.3</span> Visualizations &amp; Findings</a></li>
   </ul></li>
-  <li><a href="#appendix-technical-notes" id="toc-appendix-technical-notes" class="nav-link" data-scroll-target="#appendix-technical-notes"><span class="header-section-number">7</span> Appendix Technical Notes</a>
+  <li><a href="#conclusions-recommendations" id="toc-conclusions-recommendations" class="nav-link" data-scroll-target="#conclusions-recommendations"><span class="header-section-number">7</span> Conclusions &amp; Recommendations</a>
   <ul class="collapse">
-  <li><a href="#stack-environment" id="toc-stack-environment" class="nav-link" data-scroll-target="#stack-environment"><span class="header-section-number">7.1</span> Stack &amp; Environment</a></li>
-  <li><a href="#chart-index" id="toc-chart-index" class="nav-link" data-scroll-target="#chart-index"><span class="header-section-number">7.2</span> Chart Index</a></li>
+  <li><a href="#supplier-revenue" id="toc-supplier-revenue" class="nav-link" data-scroll-target="#supplier-revenue"><span class="header-section-number">7.1</span> Supplier Revenue</a></li>
+  <li><a href="#sales-trends" id="toc-sales-trends" class="nav-link" data-scroll-target="#sales-trends"><span class="header-section-number">7.2</span> Sales Trends</a></li>
+  <li><a href="#fulfillment-carriers" id="toc-fulfillment-carriers" class="nav-link" data-scroll-target="#fulfillment-carriers"><span class="header-section-number">7.3</span> Fulfillment &amp; Carriers</a></li>
+  </ul></li>
+  <li><a href="#appendix-technical-notes" id="toc-appendix-technical-notes" class="nav-link" data-scroll-target="#appendix-technical-notes"><span class="header-section-number">8</span> Appendix Technical Notes</a>
+  <ul class="collapse">
+  <li><a href="#stack-environment" id="toc-stack-environment" class="nav-link" data-scroll-target="#stack-environment"><span class="header-section-number">8.1</span> Stack &amp; Environment</a></li>
+  <li><a href="#chart-index" id="toc-chart-index" class="nav-link" data-scroll-target="#chart-index"><span class="header-section-number">8.2</span> Chart Index</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3469,7 +3477,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>Beverages is the undisputed top-performing category with $267,868 in total revenue, followed closely by Dairy Products at $234,507 — together these two categories account for over 38% of all revenue across the eight segments. Confections ($167,357) and Meat/Poultry ($163,022) form a tight second tier, separated by less than $5,000. Seafood ($131,262) and Condiments ($106,047) occupy the middle ground, while Produce ($99,985) and Grains/Cereals ($95,745) sit at the bottom, both falling just below the $100,000 mark. The spread between the highest and lowest categories is nearly 2.8×, indicating meaningful structural concentration at the category level.</p>
+<p>Beverages is the undisputed top-performing category with $267,868 in total revenue, followed closely by Dairy Products at $234,507 together these two categories account for over 38% of all revenue across the eight segments. Confections ($167,357) and Meat/Poultry ($163,022) form a tight second tier, separated by less than $5,000. Seafood ($131,262) and Condiments ($106,047) occupy the middle ground, while Produce ($99,985) and Grains/Cereals ($95,745) sit at the bottom, both falling just below the $100,000 mark. The spread between the highest and lowest categories is nearly 2.8×, indicating meaningful structural concentration at the category level.</p>
 <div id="8e60b2f3" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3561,12 +3569,12 @@ vertical-align: -.125em;
 <tr class="odd">
 <td>Low overall rank, low category rank</td>
 <td>★ Overall &amp; Category Leaders</td>
-<td>Dominant performers across both dimensions — highest strategic value</td>
+<td>Dominant performers across both dimensions highest strategic value</td>
 </tr>
 <tr class="even">
 <td>High overall rank, low category rank</td>
 <td>◆ Niche Category Specialists</td>
-<td>Lead their category but have lower total volume — valuable within segment</td>
+<td>Lead their category but have lower total volume valuable within segment</td>
 </tr>
 <tr class="odd">
 <td>Low overall rank, high category rank</td>
@@ -3576,11 +3584,11 @@ vertical-align: -.125em;
 <tr class="even">
 <td>High overall rank, high category rank</td>
 <td>▼ Underperformers</td>
-<td>Lag on both dimensions — candidates for review</td>
+<td>Lag on both dimensions candidates for review</td>
 </tr>
 </tbody>
 </table>
-<p>The quadrant plot reveals a clear cluster of top performers in the bottom-left corner, where Aux joyeux ecclésiastiques, Gai pâturage, Plutzer, and Pasta Buttini all hold both low overall ranks (1–5) and category rank 1 — confirming them as true Overall &amp; Category Leaders. Formaggi Fortini sits just outside this elite group at overall rank ~8 and category rank 2, representing a strong Dairy Products contender. The upper-left region (Overall Leaders, Mid Category) is sparsely populated, meaning few suppliers achieve high global revenue while ranking only mid-tier within their category. The right half of the chart is densely populated with Underperformers and Niche Specialists, with several Condiments and Seafood suppliers clustering between overall ranks 30–50 and category ranks 5–8 — high on both axes and therefore the lowest strategic priority. One notable Niche Specialist appears around overall rank 38–40 with category rank 1, indicating a supplier who dominates their product segment despite a modest global revenue position.</p>
+<p>The quadrant plot reveals a clear cluster of top performers in the bottom-left corner, where Aux joyeux ecclésiastiques, Gai pâturage, Plutzer, and Pasta Buttini all hold both low overall ranks (1–5) and category rank 1 confirming them as true Overall &amp; Category Leaders. Formaggi Fortini sits just outside this elite group at overall rank ~8 and category rank 2, representing a strong Dairy Products contender. The upper-left region (Overall Leaders, Mid Category) is sparsely populated, meaning few suppliers achieve high global revenue while ranking only mid-tier within their category. The right half of the chart is densely populated with Underperformers and Niche Specialists, with several Condiments and Seafood suppliers clustering between overall ranks 30–50 and category ranks 5–8 high on both axes and therefore the lowest strategic priority. One notable Niche Specialist appears around overall rank 38–40 with category rank 1, indicating a supplier who dominates their product segment despite a modest global revenue position.</p>
 </section>
 </section>
 <section id="section-2-sales-trends-analysis" class="level2" data-number="4">
@@ -3749,7 +3757,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>Revenue opened at $27,861 in July 1996 and followed a broadly upward trajectory over the 23-month period, reaching its all-time peak of $123,799 in April 1998 — a 4.44× increase from the starting point. The path was not linear: an early spike to $61,000 in January 1997 was immediately reversed to roughly $39,000 in February, and a mid-series trough of ~$36,000 in June 1997 briefly pulled the line back below the median. The $47,288 median was first crossed in January 1997 and then again consistently from December 1997 onward, with the final five months of the dataset all sitting well above it. The sharp collapse to the series low of $18,334 in May 1998 stands out as a clear anomaly — falling 85% from the April peak in a single month — and is most likely a data cutoff or partial-month recording artifact rather than a genuine business event.</p>
+<p>Revenue opened at $27,861 in July 1996 and followed a broadly upward trajectory over the 23-month period, reaching its all-time peak of $123,799 in April 1998 a 4.44× increase from the starting point. The path was not linear: an early spike to $61,000 in January 1997 was immediately reversed to roughly $39,000 in February, and a mid-series trough of ~$36,000 in June 1997 briefly pulled the line back below the median. The $47,288 median was first crossed in January 1997 and then again consistently from December 1997 onward, with the final five months of the dataset all sitting well above it. The sharp collapse to the series low of $18,334 in May 1998 stands out as a clear anomaly falling 85% from the April peak in a single month, and is most likely a data cutoff or partial-month recording artifact rather than a genuine business event.</p>
 <div id="0deebb55" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3852,7 +3860,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>The 3-month rolling average (median $48,327) tracks the same general upward arc as raw monthly revenue but absorbs the most volatile swings, making the underlying growth trend easier to read. The most telling divergence appears in the January 1997 spike: while monthly revenue jumped to ~$61,000, the rolling average climbed only to ~$51,000, confirming that the spike was a short-term aberration rather than a sustained shift. Conversely, from December 1997 through April 1998 the rolling average rose steadily from ~$56,000 to ~$110,000, closely shadowing the raw line and signaling that the late-period acceleration was genuine and sustained across multiple months. After the May 1998 collapse to $18,334, the rolling average lands around $82,000 — still well above the median — because it is anchored by the two strong preceding months, underscoring why the trailing average is a more reliable planning baseline than any single monthly figure.</p>
+<p>The 3-month rolling average (median $48,327) tracks the same general upward arc as raw monthly revenue but absorbs the most volatile swings, making the underlying growth trend easier to read. The most telling divergence appears in the January 1997 spike: while monthly revenue jumped to ~$61,000, the rolling average climbed only to ~$51,000, confirming that the spike was a short-term aberration rather than a sustained shift. Conversely, from December 1997 through April 1998 the rolling average rose steadily from ~$56,000 to ~$110,000, closely shadowing the raw line and signaling that the late-period acceleration was genuine and sustained across multiple months. After the May 1998 collapse to $18,334, the rolling average lands around $82,000, still well above the median, because it is anchored by the two strong preceding months, underscoring why the trailing average is a more reliable planning baseline than any single monthly figure.</p>
 <div id="a8091ffd" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3921,7 +3929,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>Across the 23 periods measured, growth months (15) outnumber contraction months (8) by nearly 2-to-1, confirming the positive directional bias seen in the trend charts. The most explosive single-month acceleration was December 1997 at +64.0%, followed by three other strong surges: October 1996 (+42.2%), January 1997 (+35.4%), and April 1997 (+37.6%). Contractions were concentrated in four episodes — August 1996 (−8.5%), February 1997 (−37.2%), June 1997 (−32.4%), and November 1997 (−34.8%) — all recovering within one to two months, suggesting cyclical demand patterns rather than structural decline. The outlier is May 1998 at −85.2%, which dwarfs every other contraction by a factor of more than two and reinforces the interpretation that this figure reflects an incomplete data period rather than an actual revenue collapse.</p>
+<p>Across the 23 periods measured, growth months (15) outnumber contraction months (8) by nearly 2-to-1, confirming the positive directional bias seen in the trend charts. The most explosive single-month acceleration was December 1997 at +64.0%, followed by three other strong surges: October 1996 (+42.2%), January 1997 (+35.4%), and April 1997 (+37.6%). Contractions were concentrated in four episodes, August 1996 (−8.5%), February 1997 (−37.2%), June 1997 (−32.4%), and November 1997 (−34.8%) all recovering within one to two months, suggesting cyclical demand patterns rather than structural decline. The outlier is May 1998 at −85.2%, which dwarfs every other contraction by a factor of more than two and reinforces the interpretation that this figure reflects an incomplete data period rather than an actual revenue collapse.</p>
 </section>
 </section>
 <section id="section-3-fulfillment-shipper-analysis" class="level2" data-number="5">
@@ -3947,7 +3955,7 @@ vertical-align: -.125em;
 </tr>
 <tr class="even">
 <td><code>Orders</code></td>
-<td>OrderDate, ShippedDate, RequiredDate, Freight, ShipVia — fulfillment timing and cost</td>
+<td>OrderDate, ShippedDate, RequiredDate, Freight, ShipVia, fulfillment timing and cost</td>
 </tr>
 </tbody>
 </table>
@@ -3956,10 +3964,10 @@ vertical-align: -.125em;
 <h3 data-number="5.2" class="anchored" data-anchor-id="query-design-1"><span class="header-section-number">5.2</span> Query Design</h3>
 <p>A single CTE (<code>ShipperDetails</code>) joins Shippers to Orders and computes all metrics in a single pass using conditional aggregation:</p>
 <ul>
-<li><code>AvgDaysToShip</code> — average of <code>DATEDIFF(DAY, OrderDate, ShippedDate)</code> per shipper</li>
-<li><code>OnTimeOrders / OnTimePct</code> — count and share of orders where <code>ShippedDate ≤ RequiredDate</code></li>
-<li><code>LatePct</code> — share of orders where <code>ShippedDate &gt; RequiredDate</code></li>
-<li><code>AvgFreightExp</code> and <code>TotalSpentPerShipper</code> — freight cost analysis ### Shipper Performance Summary</li>
+<li><code>AvgDaysToShip</code> average of <code>DATEDIFF(DAY, OrderDate, ShippedDate)</code> per shipper</li>
+<li><code>OnTimeOrders / OnTimePct</code> count and share of orders where <code>ShippedDate ≤ RequiredDate</code></li>
+<li><code>LatePct</code> share of orders where <code>ShippedDate &gt; RequiredDate</code></li>
+<li><code>AvgFreightExp</code> and <code>TotalSpentPerShipper</code> freight cost analysis ### Shipper Performance Summary</li>
 </ul>
 <table class="caption-top table">
 <colgroup>
@@ -4083,7 +4091,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>United Package carries the highest total order volume at 326 orders (299 on-time, 27 late), making it the dominant carrier by throughput. Federal Shipping handled 255 orders with only 15 late — an on-time rate of approximately 94% — the strongest reliability performance of the three. Speedy Express processed 249 orders with 16 late, yielding a very similar on-time rate of ~93.6%, essentially tied with Federal Shipping on reliability despite handling slightly fewer orders. The gap in late order counts between Federal Shipping/Speedy Express (15–16) and United Package (27) is notable: United Package generates nearly twice the late deliveries of either peer, suggesting that its higher volume may be straining fulfillment capacity and depressing on-time performance.</p>
+<p>United Package carries the highest total order volume at 326 orders (299 on-time, 27 late), making it the dominant carrier by throughput. Federal Shipping handled 255 orders with only 15 late an on-time rate of approximately 94% the strongest reliability performance of the three. Speedy Express processed 249 orders with 16 late, yielding a very similar on-time rate of ~93.6%, essentially tied with Federal Shipping on reliability despite handling slightly fewer orders. The gap in late order counts between Federal Shipping/Speedy Express (15–16) and United Package (27) is notable: United Package generates nearly twice the late deliveries of either peer, suggesting that its higher volume may be straining fulfillment capacity and depressing on-time performance.</p>
 <div id="d0b84a0e" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
@@ -4195,50 +4203,162 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>Speedy Express is the fastest shipper at 7.5 days average that is 1.7 days faster than United Package at 9.2 days, an 18% difference. Federal Shipping falls between at 8.6 days. While the gap between shippers is relatively narrow, for time-sensitive orders the choice of carrier has meaningful impact on customer experience. Notably, United Package handles the highest order volume (326 orders) despite having both the slowest average ship time and the lowest on-time rate, suggesting capacity constraints may be affecting performance.</p>
+</section>
+</section>
+<section id="section-4-late-order-severity-analysis" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="section-4-late-order-severity-analysis"><span class="header-section-number">6</span> Section 4: Late Order Severity Analysis</h2>
+<p>While Section 3 measures fulfillment performance across all orders, this section isolates only the orders that missed their required delivery date, where <code>ShippedDate &gt; RequiredDate</code>, and measures how severe those delays were per carrier. Frequency and severity are distinct failure modes: a shipper can have few late orders but extreme delays, or many late orders with quick recovery. Both dimensions matter for evaluating carrier risk.</p>
+<section id="data-model-3" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="data-model-3"><span class="header-section-number">6.1</span> Data Model</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Table</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Shippers</code></td>
+<td>ShipperID, CompanyName, carrier identity</td>
+</tr>
+<tr class="even">
+<td><code>Orders</code></td>
+<td>RequiredDate, ShippedDate, ShipVia, deadline and actual delivery</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="query-design-late-orders-isolation" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="query-design-late-orders-isolation"><span class="header-section-number">6.2</span> Query Design — Late Orders Isolation</h3>
+<p>A single CTE (<code>ShippingDetails</code>) filters to late orders only using <code>WHERE o.ShippedDate &gt; o.RequiredDate</code>, then computes <code>DATEDIFF(DAY, o.RequiredDate, o.ShippedDate)</code> as <code>DaysLate</code> per order. The outer query returns the full detail sorted by worst delay, allowing both per-order inspection and downstream aggregation by shipper.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> ShippingDetails <span class="kw">AS</span> (</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        s.ShipperID, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        s.CompanyName,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        o.OrderID,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        o.OrderDate,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        o.RequiredDate,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        o.ShippedDate,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        DATEDIFF(<span class="dt">DAY</span>, o.RequiredDate, o.ShippedDate) <span class="kw">AS</span> DaysLate</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Shippers <span class="kw">AS</span> s</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">JOIN</span> Orders <span class="kw">AS</span> o</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">ON</span> s.ShipperID <span class="op">=</span> o.ShipVia</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> o.ShippedDate <span class="op">&gt;</span> o.RequiredDate</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ShippingDetails</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> DaysLate <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>WHERE</code> clause is the critical filter on-time orders never enter the CTE, so all downstream aggregation reflects delay severity only. <code>ORDER BY DaysLate DESC</code> surfaces the worst offenders first for immediate visibility.</p>
+</section>
+<section id="visualizations-findings-1" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="visualizations-findings-1"><span class="header-section-number">6.3</span> Visualizations &amp; Findings</h3>
+<section id="chart-10-average-days-late-when-orders-miss-deadline" class="level4" data-number="6.3.1">
+<h4 data-number="6.3.1" class="anchored" data-anchor-id="chart-10-average-days-late-when-orders-miss-deadline"><span class="header-section-number">6.3.1</span> Chart 10 — Average Days Late When Orders Miss Deadline</h4>
+<blockquote class="blockquote">
+<p><strong>Average Days Late When Orders Miss Deadline Northwind Database</strong> A horizontal bar chart showing the average number of days past the required delivery date for each shipper, computed exclusively among late orders. This isolates delay severity from frequency, revealing how badly each carrier misses deadlines when it does.</p>
+</blockquote>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Worst average delay</td>
+<td>Speedy Express 8.1 days late on average</td>
+</tr>
+<tr class="even">
+<td>Mid severity</td>
+<td>United Package 5.6 avg days late across 27 late orders</td>
+</tr>
+<tr class="odd">
+<td>Most consistent</td>
+<td>Federal Shipping 5.6 avg days late across 15 late orders</td>
+</tr>
+<tr class="even">
+<td>Severity gap</td>
+<td>Speedy Express is 45% worse than both peers when late</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Insight:</strong> Two distinct failure patterns emerge across the three carriers. United Package fails <strong>frequently but recovers relatively quickly</strong> it has the most late orders (27) but an average delay of only 5.6 days. Speedy Express is the inverse: it fails <strong>rarely but severely</strong> when it misses a deadline, it averages 8.1 days late, 45% worse than its peers. Federal Shipping is the most reliable carrier on both dimensions, matching United Package’s delay severity with nearly half the late order count.</p>
+<div id="5baa90c5" class="cell" data-vscode="{&quot;languageId&quot;:&quot;sql&quot;}">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>WITH ShippingDetails AS (</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    SELECT </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        s.ShipperID, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        s.CompanyName,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        o.OrderID,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        o.OrderDate,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        o.RequiredDate,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        o.ShippedDate,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        DATEDIFF(DAY, o.RequiredDate, o.ShippedDate) AS DaysLate</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    FROM Shippers AS s</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    JOIN Orders AS o</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        ON s.ShipperID <span class="op">=</span> o.ShipVia</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    WHERE o.ShippedDate <span class="op">&gt;</span> o.RequiredDate</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>FROM ShippingDetails</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>ORDER BY DaysLate DESC<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div id="0ee298de" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>late_by_shipper <span class="op">=</span> order_timing.groupby(<span class="st">&#39;CompanyName&#39;</span>).agg(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    late_count<span class="op">=</span>(<span class="st">&#39;OrderID&#39;</span>, <span class="st">&#39;count&#39;</span>),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    avg_days_late<span class="op">=</span>(<span class="st">&#39;DaysLate&#39;</span>, <span class="st">&#39;mean&#39;</span>),</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    max_days_late<span class="op">=</span>(<span class="st">&#39;DaysLate&#39;</span>, <span class="st">&#39;max&#39;</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>).reset_index().sort_values(<span class="st">&#39;avg_days_late&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>late_sorted <span class="op">=</span> late_by_shipper.sort_values(<span class="st">&#39;avg_days_late&#39;</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>color_map <span class="op">=</span> {</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Federal Shipping&#39;</span>: <span class="st">&quot;#1F4E79&quot;</span>,</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Speedy Express&#39;</span>:   <span class="st">&quot;#2E74B5&quot;</span>,</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;United Package&#39;</span>:   <span class="st">&quot;#BDD7EE&quot;</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> late_sorted[<span class="st">&#39;CompanyName&#39;</span>].<span class="bu">map</span>(color_map)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.barh(late_sorted[<span class="st">&#39;CompanyName&#39;</span>],</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>               late_sorted[<span class="st">&#39;avg_days_late&#39;</span>],</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span>colors,</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>               height<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Value labels</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar <span class="kw">in</span> bars:</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_width() <span class="op">+</span> <span class="fl">0.1</span>,</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>            bar.get_y() <span class="op">+</span> bar.get_height()<span class="op">/</span><span class="dv">2</span>,</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f&#39;</span><span class="sc">{</span>bar<span class="sc">.</span>get_width()<span class="sc">:.1f}</span><span class="ss"> days&#39;</span>,</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            va<span class="op">=</span><span class="st">&#39;center&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>)</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">&#39;x&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;:&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&quot;Average Days Late&quot;</span>, fontsize<span class="op">=</span><span class="dv">11</span>, labelpad<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&quot;Average Days Late When Orders Miss Deadline — Northwind Database&quot;</span>,</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;top&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;right&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">&quot;outputs/04_avg_days_late_by_shipper.png&quot;</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">&quot;tight&quot;</span>)</span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>late_by_shipper <span class="op">=</span> order_timing.groupby(<span class="st">&#39;CompanyName&#39;</span>).agg(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    late_count<span class="op">=</span>(<span class="st">&#39;OrderID&#39;</span>, <span class="st">&#39;count&#39;</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    avg_days_late<span class="op">=</span>(<span class="st">&#39;DaysLate&#39;</span>, <span class="st">&#39;mean&#39;</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    max_days_late<span class="op">=</span>(<span class="st">&#39;DaysLate&#39;</span>, <span class="st">&#39;max&#39;</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>).reset_index().sort_values(<span class="st">&#39;avg_days_late&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>late_sorted <span class="op">=</span> late_by_shipper.sort_values(<span class="st">&#39;avg_days_late&#39;</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>color_map <span class="op">=</span> {</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Federal Shipping&#39;</span>: <span class="st">&quot;#1F4E79&quot;</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Speedy Express&#39;</span>:   <span class="st">&quot;#2E74B5&quot;</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;United Package&#39;</span>:   <span class="st">&quot;#BDD7EE&quot;</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> late_sorted[<span class="st">&#39;CompanyName&#39;</span>].<span class="bu">map</span>(color_map)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.barh(late_sorted[<span class="st">&#39;CompanyName&#39;</span>],</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>               late_sorted[<span class="st">&#39;avg_days_late&#39;</span>],</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span>colors,</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>               height<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Value labels</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar <span class="kw">in</span> bars:</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_width() <span class="op">+</span> <span class="fl">0.1</span>,</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>            bar.get_y() <span class="op">+</span> bar.get_height()<span class="op">/</span><span class="dv">2</span>,</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f&#39;</span><span class="sc">{</span>bar<span class="sc">.</span>get_width()<span class="sc">:.1f}</span><span class="ss"> days&#39;</span>,</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>            va<span class="op">=</span><span class="st">&#39;center&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">&#39;x&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;:&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&quot;Average Days Late&quot;</span>, fontsize<span class="op">=</span><span class="dv">11</span>, labelpad<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&quot;Average Days Late When Orders Miss Deadline — Northwind Database&quot;</span>,</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;top&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;right&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">&quot;outputs/04_avg_days_late_by_shipper.png&quot;</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">&quot;tight&quot;</span>)</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -4251,29 +4371,40 @@ vertical-align: -.125em;
 <p>While Chart “On Time VS Late Orders by Shippers” identified United Package as having the lowest on-time rate with 27 late orders, the most of any shipper Chart “Average Days Late When Orders Miss Deadline” reveals a more nuanced picture of delay severity. Speedy Express, despite fewer late orders (15), averages 8.1 days past the required date when delays do occur 45% more severe than United Package and Federal Shipping, both averaging 5.6 days late. Federal Shipping performs most consistently across all three metrics: fewest late orders (15), tied for lowest average delay (5.6 days), and the best on-time rate from Chart 8. The data suggests two distinct failure modes, United Package fails frequently but recovers quickly, while Speedy Express fails rarely but severely. For time-critical shipments, Federal Shipping is the lowest-risk carrier across all fulfillment dimensions.</p>
 </section>
 </section>
-<section id="conclusions-recommendations" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="conclusions-recommendations"><span class="header-section-number">6</span> Conclusions &amp; Recommendations</h2>
-<section id="supplier-revenue" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="supplier-revenue"><span class="header-section-number">6.1</span> Supplier Revenue</h3>
+</section>
+<section id="conclusions-recommendations" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="conclusions-recommendations"><span class="header-section-number">7</span> Conclusions &amp; Recommendations</h2>
+<section id="supplier-revenue" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="supplier-revenue"><span class="header-section-number">7.1</span> Supplier Revenue</h3>
 <ul>
-<li><p>Concentrate contract renewal efforts on the top 5–6 suppliers, which collectively account for the majority of net revenue.</p></li>
-<li><p>Use the Overall vs. Category Rank quadrant to identify Niche Specialists — suppliers who lead their segment and may warrant priority even if their global rank appears modest.</p></li>
-<li><p>Monitor concentration risk: heavy reliance on a small number of Beverages and Dairy Products suppliers creates vulnerability if any one relationship is disrupted. ### Sales Trends</p></li>
-<li><p>The 4.44× revenue growth over 23 months indicates strong underlying demand; however, the −85% MoM contraction in May 1998 warrants investigation to determine whether it reflects a genuine seasonal dip or a data collection artifact.</p></li>
-<li><p>The 3-month rolling average is a more reliable planning baseline than raw monthly revenue given visible month-to-month volatility.</p></li>
-<li><p>December consistently shows strong acceleration; incorporate Q4 seasonality into annual forecasting models. ### Fulfillment &amp; Carriers</p></li>
-<li><p>Federal Shipping is the lowest-risk carrier across all fulfillment dimensions: fewest late orders (tied), lowest average delay (5.6 days), and competitive ship speed.</p></li>
-<li><p>For time-critical shipments, avoid Speedy Express despite its speed advantage — when it misses deadlines, delays are 45% more severe than its peers.</p></li>
-<li><p>Investigate United Package’s capacity constraints: its high volume combined with the most late deliveries suggests it may be approaching fulfillment limits.</p></li>
-<li><p>Consider renegotiating freight contracts with United Package, which carries both the highest order volume and the highest total freight spend.</p></li>
+<li>Concentrate contract renewal efforts on the top 5–6 suppliers, which collectively account for the majority of net revenue.</li>
+<li>Use the Overall vs. Category Rank quadrant to identify Niche Specialists, suppliers who lead their segment and may warrant priority even if their global rank appears modest.</li>
+<li>Monitor concentration risk: heavy reliance on a small number of Beverages and Dairy Products suppliers creates vulnerability if any one relationship is disrupted.</li>
+</ul>
+</section>
+<section id="sales-trends" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="sales-trends"><span class="header-section-number">7.2</span> Sales Trends</h3>
+<ul>
+<li>The 4.44× revenue growth over 23 months indicates strong underlying demand; however, the −85% MoM contraction in May 1998 warrants investigation to determine whether it reflects a genuine seasonal dip or a data collection artifact.</li>
+<li>The 3-month rolling average is a more reliable planning baseline than raw monthly revenue given visible month-to-month volatility.</li>
+<li>December consistently shows strong acceleration; incorporate Q4 seasonality into annual forecasting models.</li>
+</ul>
+</section>
+<section id="fulfillment-carriers" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="fulfillment-carriers"><span class="header-section-number">7.3</span> Fulfillment &amp; Carriers</h3>
+<ul>
+<li>Federal Shipping is the lowest-risk carrier across all fulfillment dimensions: fewest late orders (tied), lowest average delay (5.6 days), and competitive ship speed.</li>
+<li>For time-critical shipments, avoid Speedy Express despite its speed advantage, when it misses deadlines, delays are 45% more severe than its peers.</li>
+<li>Investigate United Package’s capacity constraints: its high volume combined with the most late deliveries suggests it may be approaching fulfillment limits.</li>
+<li>Consider renegotiating freight contracts with United Package, which carries both the highest order volume and the highest total freight spend.</li>
 </ul>
 <hr>
 </section>
 </section>
-<section id="appendix-technical-notes" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="appendix-technical-notes"><span class="header-section-number">7</span> Appendix Technical Notes</h2>
-<section id="stack-environment" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="stack-environment"><span class="header-section-number">7.1</span> Stack &amp; Environment</h3>
+<section id="appendix-technical-notes" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="appendix-technical-notes"><span class="header-section-number">8</span> Appendix Technical Notes</h2>
+<section id="stack-environment" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="stack-environment"><span class="header-section-number">8.1</span> Stack &amp; Environment</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -4305,8 +4436,8 @@ vertical-align: -.125em;
 </tbody>
 </table>
 </section>
-<section id="chart-index" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="chart-index"><span class="header-section-number">7.2</span> Chart Index</h3>
+<section id="chart-index" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="chart-index"><span class="header-section-number">8.2</span> Chart Index</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -4364,7 +4495,7 @@ vertical-align: -.125em;
 <tr class="even">
 <td>10</td>
 <td>Average Days Late When Orders Miss Deadline</td>
-<td>Section 3</td>
+<td>Section 4</td>
 </tr>
 </tbody>
 </table>
