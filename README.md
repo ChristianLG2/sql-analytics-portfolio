@@ -35,7 +35,7 @@ Analyzes supplier revenue concentration, category-level rankings, monthly revenu
 ---
 
 ### 02 · Cohort Retention Analysis
-**Stack:** T-SQL · Python · pandas · seaborn · Quarto
+**Stack:** T-SQL · Python · pandas · seaborn 
 
 Segments customers into monthly enrollment cohorts and tracks retention rates over time to identify where drop-off occurs and which cohorts show the strongest
 long-term engagement. Delivers a cohort heatmap as the primary analytical artifact.
